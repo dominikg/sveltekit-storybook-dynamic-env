@@ -13,10 +13,10 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		typescript: {
-		 config: c => {
-			 c.include.push('../.storybook/**/*.ts')
-			 return c;
-		 }
+			config: (c) => {
+				c.include.push('../.storybook/**/*.ts');
+				return c;
+			}
 		}
 	}
 };

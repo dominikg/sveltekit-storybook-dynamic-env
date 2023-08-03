@@ -5,8 +5,3 @@
 - stop devserver
 - start storybook with `pnpm storybook`
 - open story for `Foo` and see error
-
-
-
-
-

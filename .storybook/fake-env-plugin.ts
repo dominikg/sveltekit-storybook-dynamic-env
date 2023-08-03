@@ -19,23 +19,24 @@ export default function (): Plugin {
 		}
 	}
 
+	const envIds = [
+		'$env/static/private',
+		'$env/static/public',
+		'$env/dynamic/private',
+		'$env/dynamic/public'
+	];
+	const privateIds = envIds.map((id) => `\0${id}`);
+
 	return {
 		name: 'fake-env-plugin',
 		enforce: 'pre',
 		resolveId(id) {
-			if (
-				[
-					'$env/static/private',
-					'$env/static/public',
-					'$env/dynamic/private',
-					'$env/dynamic/public'
-				].includes(id)
-			) {
+			if (envIds.includes(id)) {
 				return `\0${id}`;
 			}
 		},
 		load(id) {
-			if (!id.startsWith(`\0$env/`)) {
+			if (!privateIds.includes(id)) {
 				return;
 			}
 			const [_, mode, visibility] = id.split('/');

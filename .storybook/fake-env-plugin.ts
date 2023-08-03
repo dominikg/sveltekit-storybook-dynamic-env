@@ -6,7 +6,7 @@ export default function (): Plugin {
 		return Object.fromEntries(env.filter(([k, _]) => is_valid_identifier(k) && filter(k)));
 	}
 	const public_env = filteredEnv((key) => key.startsWith('PUBLIC_'));
-	const private_env = filteredEnv((key) => !key.startsWith('PUBLIC'));
+	const private_env = filteredEnv((key) => !key.startsWith('PUBLIC_'));
 
 	function toModule(mode: string, visibility: string): string {
 		const env = visibility === 'public' ? public_env : private_env;
